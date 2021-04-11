@@ -46,19 +46,9 @@ function Calendar() {
   
 
   let Cells = () => {
-    const formatDay = "D"
-
     let startDayWeekMonth = dayjs().startOf('month').day()
     let endDayCurrentMonth = dayjs().endOf('month').format('D')
-    let startDayCalendar = dayjs().startOf('month').subtract(startDayWeekMonth-1)
-  
-    // console.log(startDayCalendar + ' to ' +endDayCurrentMonth);
-    // console.log(startDayWeekMonth);
-  
-    console.log(startDayCalendar);
-
-    // let startDate = dayjs().startOf('month').format('D') // начало месяца число
-    // let endDate = dayjs().endOf('month').format('D') // конец месяца число
+    let startDayCalendar = dayjs().startOf('month').subtract(startDayWeekMonth-1, 'day').format('D')
 
     let currenDate = dayjs().format('D')
     let rows = [];
