@@ -1,5 +1,4 @@
-import state from './../const/state'
-
+import {state} from './../Calendar'
 
 let Cells = () => {
   const monthStart = state.currentMonth.startOf('month').day() - 1;

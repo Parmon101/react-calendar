@@ -1,9 +1,8 @@
-import state from './../const/state'
 import nextMonth  from './../func/buttonNextMonth'
-import prevMonth  from './../func/buttonBackMonth'
+import prevMonth  from './../func/buttonPrevMonth'
+import {state} from './../Calendar'
 
 let Header = () => {
-
 
   return (
     <div className="header row flex-middle">

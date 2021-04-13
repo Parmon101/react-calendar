@@ -1,7 +1,7 @@
-import state from './../const/state'
+import {state} from './../Calendar'
 
 function buttonNextMonth(e) {
-  e.preventDefault();
+  // e.preventDefault();
   state.currentMonth = state.currentMonth.add(1, 'month')
   console.log(state.currentMonth);
 }
