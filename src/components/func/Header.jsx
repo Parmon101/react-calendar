@@ -1,22 +1,20 @@
-import state from './../const/state'
-import nextMonth  from './../func/buttonNextMonth'
-import prevMonth  from './../func/buttonBackMonth'
+let Header = (count, setCount) => {
 
-let Header = () => {
+  let currentMonth = count
 
 
   return (
     <div className="header row flex-middle">
       <div className="col col-start">
-        <div className="icon" onClick={prevMonth}>
+        <div className="icon" onClick={() => setCount(prevCount => prevCount.subtract(1,'month'))}>
           chevron_left
         </div>
-      </div>
+      </div>      
       <div className="col col-center">
-        <span>{state.currentMonth.format("DD MMMM YYYY")}</span>
+        <span>{currentMonth.format("DD MMMM YYYY")}</span>
       </div>
       <div className="col col-end">
-        <div className="icon" onClick={nextMonth}>chevron_right</div>
+        <div className="icon" onClick={() => setCount(prevCount => prevCount.add(1,'month'))}>chevron_right</div>
       </div>
     </div>
   );
