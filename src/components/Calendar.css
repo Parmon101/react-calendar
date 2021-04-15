@@ -216,3 +216,7 @@ main {
   flex-basis: calc(100%/7);
   width: calc(100%/7);
 }
+
+.weekend {
+  background: rgba(125, 125, 125, 0.136);
+}

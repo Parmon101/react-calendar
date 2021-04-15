@@ -1,8 +1,5 @@
 let Header = (count, setCount) => {
 
-  let currentMonth = count
-
-
   return (
     <div className="header row flex-middle">
       <div className="col col-start">
@@ -11,7 +8,7 @@ let Header = (count, setCount) => {
         </div>
       </div>      
       <div className="col col-center">
-        <span>{currentMonth.format("DD MMMM YYYY")}</span>
+        <span>{count.format("DD MMMM YYYY")}</span>
       </div>
       <div className="col col-end">
         <div className="icon" onClick={() => setCount(prevCount => prevCount.add(1,'month'))}>chevron_right</div>

@@ -13,7 +13,7 @@ let Cells = (count) => {
   const thisMonthDays = Array.from({ length: endOfMonth }, (_, index) => index + 1);
 
   return (
-    <div className="body">
+    <div className="body ">
       {prevMonthDays.map(day => (
         <div className="row col cell" key={`prev_${day}`}>
           <span>{day}</span>
