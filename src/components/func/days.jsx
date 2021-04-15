@@ -1,12 +1,8 @@
-import {state} from './../Calendar'
-
-
-
-let Days = () => {
+let Days = (count) => {
   const dateFormat = "dddd";
   const days = [];
 
-  let startDate = state.currentMonth.startOf('week')
+  let startDate = count.startOf('week')
 
   for (let i = 1; i < 8; i++) {
     days.push(
