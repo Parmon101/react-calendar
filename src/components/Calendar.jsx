@@ -17,7 +17,7 @@ function Calendar() {
       {Header(count, setCount)}
       {Days(count)}
       {Cells(count)}
-
+      
     </div>
   );
 }
