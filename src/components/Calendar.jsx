@@ -15,9 +15,9 @@ function Calendar() {
   return (
     <div className='calendar'> 
       {Header(count, setCount)}
-      {Days(count, setCount)}
-      {Cells(count, setCount)}
-
+      {Days(count)}
+      {Cells(count)}
+      
     </div>
   );
 }

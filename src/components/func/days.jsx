@@ -11,7 +11,10 @@ let Days = (count) => {
       </div>
     );
   }
-  return <div className="days row">{days}</div> 
+  return (
+    <div className="days row">{days}</div> 
+
+  )
 }
 
 export default Days

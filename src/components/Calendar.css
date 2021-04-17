@@ -168,10 +168,14 @@ main {
   border: 2px solid blue !important
 }
 
-/* .calendar .body .cell:hover {
-  background: var(--bg-color);
+.weekend {
+  background: rgba(0, 0, 0, 0.136) !important
+}
+
+.calendar .body .cell:hover {
+  background: rgba(0, 128, 0, 0.252);
   transition: 0.5s ease-out;
-} */
+}
 
 .calendar .body .row {
   border-bottom: 1px solid var(--border-color);
@@ -216,3 +220,4 @@ main {
   flex-basis: calc(100%/7);
   width: calc(100%/7);
 }
+
