@@ -1,22 +1,34 @@
-import React from 'react'
-import {Calendar} from './components/Calendar'
+import React, { useState } from 'react'
 
+import "./App.css";
+import dayjs from 'dayjs'
 
+import {CurrentDate} from './components/func/CurrentDate'
+import {ButtonNextMonth} from './components/func/ButtonNextMonth'
+import {ButtonPrevMonth} from './components/func/ButtonPrevMonth'
+
+import {Days} from './components/func/Days'
+import {Cells} from './components/func/Cells'
+
+// import {ClickModal} from './components/func/ClickModal'
 
 function App () {
+  const currentMonth = dayjs()
+  const [count, setCount] = useState(currentMonth);
+
   return (
-    <div className="App">
-      <header>
-        <div id="logo">
-          <span>
-            <b>calendar</b>
-          </span>
-        </div>
-      </header>
-      <main>
-        <Calendar />
-      </main>
+    <div className='calendar'> 
+      <div className="header row flex-middle">
+        <ButtonPrevMonth setCount={setCount} />
+        <CurrentDate count={count} />
+        <ButtonNextMonth setCount={setCount} />
+      </div>
+      <Days count={count}/>
+      <Cells count={count}/>
+      {/* <ClickModal count={Cells} /> */}
+
     </div>
+
   );
 }
 

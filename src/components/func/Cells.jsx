@@ -1,6 +1,4 @@
-import handleClick from './clickModal'
-
-let Cells = (count) => {
+export function Cells({count}) {
   const monthStart = count.startOf('month').day() - 1;
   
   /* Создаю массив, который будет наполнен отступами для недостающих дней предыдущего месяца.
@@ -33,19 +31,19 @@ let Cells = (count) => {
   return (
     <div className="body ">
       {prevMonthDays.map(day => (
-        <div className="row col cell weekend" onClick={()=> handleClick(day)} key={`prev_${day}`}>
+        <div className="row col cell weekend" key={`prev_${day}`}>
           <span>{day}</span>
         </div>
       ))}
 
       {thisMonthDays.map(day => (
-        <div className="row col cell" onClick={()=> handleClick(day)} key={`this_${day}`}>
+        <div className="row col cell"  key={`this_${day}`}>
           <span>{day}</span>
         </div>
       ))}
 
       {nextMonthDays.map(day => (
-        <div className="row col cell weekend" onClick={()=> handleClick(day)} key={`next${day}`}>
+        <div className="row col cell weekend" key={`next${day}`}>
           <span>{day}</span>
         </div>
       ))}
@@ -53,5 +51,3 @@ let Cells = (count) => {
     </div>
   );    
 }
-
-  export default Cells
