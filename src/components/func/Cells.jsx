@@ -1,4 +1,6 @@
-export function Cells({count}) {
+// import {ClickModal} from './components/func/ClickModal'
+
+export function Cells({count,onAdd,setSelectedDay}) {
   const monthStart = count.startOf('month').day() - 1;
   
   /* Создаю массив, который будет наполнен отступами для недостающих дней предыдущего месяца.
@@ -18,32 +20,26 @@ export function Cells({count}) {
   // заполняем остаток недели новыми числами месяца
   const nextMonthDays = Array.from({ length: daysLeftInWeek }, (_, index) => daysLeftInWeek - index)
 
-  // число текущего дня
-  // const currentDay = count.format('D')
-  // const selectCurrenDay = thisMonthDays.indexOf(currentDay-1)+2
-
-
-  // function handleClick(e) {
-  //   // e.preventDefault();
-  //   console.log(`Вы выбрали ${e}`);
+  // function selectedDay(selDay) {
+  //   // console.log(selDay);
   // }
   
   return (
     <div className="body ">
       {prevMonthDays.map(day => (
-        <div className="row col cell weekend" key={`prev_${day}`}>
+        <div className="row col cell weekend" onClick={()=> {onAdd(); setSelectedDay(day)}} key={`prev_${day}`}>
           <span>{day}</span>
         </div>
       ))}
 
       {thisMonthDays.map(day => (
-        <div className="row col cell"  key={`this_${day}`}>
+        <div className="row col cell" onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
           <span>{day}</span>
         </div>
       ))}
 
       {nextMonthDays.map(day => (
-        <div className="row col cell weekend" key={`next${day}`}>
+        <div className="row col cell weekend" onClick={()=> {onAdd(); setSelectedDay(day)}} key={`next${day}`}>
           <span>{day}</span>
         </div>
       ))}

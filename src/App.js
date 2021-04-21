@@ -10,12 +10,18 @@ import {ButtonPrevMonth} from './components/func/ButtonPrevMonth'
 import {Days} from './components/func/Days'
 import {Cells} from './components/func/Cells'
 
-// import {ClickModal} from './components/func/ClickModal'
+import {Modal} from './components/func/Modal'
 
 function App () {
   const currentMonth = dayjs()
   const [count, setCount] = useState(currentMonth);
 
+  const [showModal, setShowModal] = useState(false)
+
+  const [selectedDay, setSelectedDay] = useState(0)
+  console.log(showModal);
+  // console.log(count);
+  // console.log(selectedDay);
   return (
     <div className='calendar'> 
       <div className="header row flex-middle">
@@ -24,8 +30,20 @@ function App () {
         <ButtonNextMonth setCount={setCount} />
       </div>
       <Days count={count}/>
-      <Cells count={count}/>
-      {/* <ClickModal count={Cells} /> */}
+      <Cells 
+        count={count}
+        onAdd={() => setShowModal(!showModal)} 
+        setSelectedDay={setSelectedDay}
+      />
+      <div>
+      <Modal 
+        showModal={showModal} 
+        count={count}
+        selectedDay={selectedDay}
+        onAdd={() => setShowModal(!showModal)} 
+        />
+      </div>
+     
 
     </div>
 
