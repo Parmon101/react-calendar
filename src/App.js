@@ -19,7 +19,7 @@ function App () {
   const [showModal, setShowModal] = useState(false)
 
   const [selectedDay, setSelectedDay] = useState(0)
-  console.log(showModal);
+  // console.log(showModal);
   // console.log(count);
   // console.log(selectedDay);
   return (
@@ -35,14 +35,14 @@ function App () {
         onAdd={() => setShowModal(!showModal)} 
         setSelectedDay={setSelectedDay}
       />
-      <div>
       <Modal 
-        showModal={showModal} 
         count={count}
         selectedDay={selectedDay}
-        onAdd={() => setShowModal(!showModal)} 
+        showModal={() => setShowModal(!showModal)} 
+
+        active={showModal}
+        setActive={setShowModal}
         />
-      </div>
      
 
     </div>

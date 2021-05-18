@@ -14,20 +14,19 @@ export function Cells({count,onAdd,setSelectedDay}) {
   const endOfMonth = count.endOf('month').date();
   const thisMonthDays = Array.from({ length: endOfMonth }, (_, index) => index + 1);
 
+  // const currDay = count.format("DD");
+  // console.log(thisMonthDays);
+  // console.log(currDay);
 
   // осталось дней до конца недели
   const daysLeftInWeek = 7- count.endOf('month').day();
   // заполняем остаток недели новыми числами месяца
-  const nextMonthDays = Array.from({ length: daysLeftInWeek }, (_, index) => daysLeftInWeek - index)
-
-  // function selectedDay(selDay) {
-  //   // console.log(selDay);
-  // }
+  const nextMonthDays = Array.from({ length: daysLeftInWeek }, (_, index) => index +1)
   
   return (
     <div className="body ">
       {prevMonthDays.map(day => (
-        <div className="row col cell weekend" onClick={()=> {onAdd(); setSelectedDay(day)}} key={`prev_${day}`}>
+        <div className="row col cell weekend"  key={`prev_${day}`}>
           <span>{day}</span>
         </div>
       ))}
@@ -39,7 +38,7 @@ export function Cells({count,onAdd,setSelectedDay}) {
       ))}
 
       {nextMonthDays.map(day => (
-        <div className="row col cell weekend" onClick={()=> {onAdd(); setSelectedDay(day)}} key={`next${day}`}>
+        <div className="row col cell weekend" key={`next${day}`}>
           <span>{day}</span>
         </div>
       ))}
@@ -47,3 +46,4 @@ export function Cells({count,onAdd,setSelectedDay}) {
     </div>
   );    
 }
+
