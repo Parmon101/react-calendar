@@ -6,7 +6,7 @@ export function Modal({selectedDay,count,showModal, active, setActive}) {
          <span className="close-modal" onClick={()=> {showModal()}}>X</span>
          <span > Содержимое окна:</span>
          <br/>
-         <span>Выбрано {selectedDay} {count.format('MMMM')}</span>
+         <span>Выбрано {selectedDay} {count.format('MMMM YYYY')}</span>
       </div>
 
     </div>

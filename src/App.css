@@ -207,3 +207,8 @@ header {
   right: 15px; 
   cursor: pointer;
 }
+
+ /* краска ячейки 2х2> */
+/* .asd:nth-child(4n+3), .asd:nth-child(4n) {
+  background: rgba(0, 204, 255, 0.199) !important
+} */

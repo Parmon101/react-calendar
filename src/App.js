@@ -12,6 +12,12 @@ import {Cells} from './components/func/Cells'
 
 import {Modal} from './components/func/Modal'
 
+import {Schedule} from './components/func/Schedule'
+
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+
+
 function App () {
   const currentMonth = dayjs()
   const [count, setCount] = useState(currentMonth);
@@ -19,9 +25,14 @@ function App () {
   const [showModal, setShowModal] = useState(false)
 
   const [selectedDay, setSelectedDay] = useState(0)
-  // console.log(showModal);
-  // console.log(count);
-  // console.log(selectedDay);
+
+  // const [startDate, setStartDate] = useState(new Date());
+
+
+  // const [currDay, setCurrDay] = useState()
+  // const [currMonth, setCurrMonth] = useState()
+  // const [currYear, setCurrYear] = useState()
+  
   return (
     <div className='calendar'> 
       <div className="header row flex-middle">
@@ -43,8 +54,19 @@ function App () {
         active={showModal}
         setActive={setShowModal}
         />
-     
+      <Schedule
+        count={count}
+        
+        // setCurrDay={setCurrDay}
+        // setCurrMonth={setCurrMonth}
+        // setCurrYear={setCurrYear}
 
+      />
+      {/* <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        calendarStartDay={3}
+      /> */}
     </div>
 
   );
