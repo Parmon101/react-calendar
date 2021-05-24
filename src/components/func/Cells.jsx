@@ -31,11 +31,11 @@ export function Cells({count,onAdd,setSelectedDay}) {
 
       {thisMonthDays.map(day => (
         (day == currDay) ? 
-        <div className="row col cell select asd" onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
+        <div className="row col cell select asd"  onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
           <span>{day}</span>
         </div> 
         :
-         <div className="row col cell asd" onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
+         <div className="row col cell asd"  onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
           <span>{day}</span>
         </div>
       ))}

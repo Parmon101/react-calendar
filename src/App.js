@@ -14,8 +14,8 @@ import {Modal} from './components/func/Modal'
 
 import {Schedule} from './components/func/Schedule'
 
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 function App () {
@@ -26,8 +26,10 @@ function App () {
 
   const [selectedDay, setSelectedDay] = useState(0)
 
-  // const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
 
+  // console.log(count.format("ddd MMMM YYYY HH:MM:ss"));
+  // console.log(startDate);
 
   // const [currDay, setCurrDay] = useState()
   // const [currMonth, setCurrMonth] = useState()
@@ -62,11 +64,12 @@ function App () {
         // setCurrYear={setCurrYear}
 
       />
-      {/* <DatePicker
+      <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         calendarStartDay={3}
-      /> */}
+      />
+      {/* <p>{startDate.getDate()} {startDate.getMonth()+1} {startDate.getFullYear()}</p> */}
     </div>
 
   );
