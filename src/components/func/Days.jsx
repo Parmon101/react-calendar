@@ -1,18 +1,15 @@
-export function Days ({count})  {
-  const dateFormat = "dddd";
-  const days = [];
+const dateFormat = "dddd";
 
+export function Days({ count })  {
   let startDate = count.startOf('week')
 
-  for (let i = 1; i < 8; i++) {
-    days.push(
-      <div className="col col-center" key={i}>
-        {startDate.add(i, 'day').format(dateFormat)}
-      </div>
-    );
-  }
   return (
-    <div className="days row">{days}</div> 
-
+    <div className="days row">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div className="col col-center" key={i}>
+          {startDate.add(i, 'day').format(dateFormat)}
+        </div>
+      ))}
+    </div>
   )
 }
