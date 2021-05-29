@@ -1,12 +1,24 @@
 // import { default as dayjs } from 'dayjs';
 
 export function Cells({ count, onAdd, setSelectedDay, startDate }) {
-  const monthStart = count.startOf('month').day() - 1;
+  const monthStart = count.startOf('month').day();
 
-  const rangeOfDaysNeeded = Array.from({ length: monthStart }, (_, index) => monthStart - index);
+  // const monthStart = count.startOf('month').day() - 1;
+  // const rangeOfDaysNeeded = Array.from({ length: monthStart }, (_, index) => monthStart - index);
+  // const monthStart2 = rangeOfDaysNeeded.map(dayShift => count.startOf('month').subtract(dayShift, 'day').format('D'));
 
-  // TODO: сюда
-  const prevMonthDays = rangeOfDaysNeeded.map(dayShift => count.startOf('month').subtract(dayShift, 'day').format('D'));
+  // остатки дней предыдущего месяца
+  const prevMonthDays = Array.from({ length: monthStart-1 }, (_, index) => {
+    const day = count.endOf('month').add(index, 'days');
+    
+    const diff = day.diff(startDate, 'days');
+    
+    return {
+      day: day.format('D'),
+      diff,
+    }
+  }).reverse();
+  
 
   const endOfMonth = count.endOf('month').date();
   const thisMonthDays = Array.from({ length: endOfMonth }, (_, index) => {
@@ -25,17 +37,40 @@ export function Cells({ count, onAdd, setSelectedDay, startDate }) {
 
   // осталось дней до конца недели
   const daysLeftInWeek = 7- count.endOf('month').day();
-  // заполняем остаток недели новыми числами месяца
-  // TODO: сюда
-  const nextMonthDays = Array.from({ length: daysLeftInWeek }, (_, index) => index +1)
 
+  // заполняем остаток недели новыми числами месяца
+  const nextMonthDays = Array.from({ length: daysLeftInWeek}, (_, index) => {
+    const day = count.startOf('month').add(index, 'days');
+
+    const diff = day.diff(startDate, 'days');
+
+    return {
+      day: day.format('D'),
+      diff,
+    }
+  });
+  console.log(prevMonthDays);
+  console.log(thisMonthDays);
+  console.log(nextMonthDays);
   return (
     <div className="body ">
-      {prevMonthDays.map(day => (
-        <div className="row col cell weekend"  key={`prev_${day}`}>
-          <span>{day}</span>
-        </div>
-      ))}
+      
+      {prevMonthDays.map(({ day, diff }) => {
+        const diffRemainder = diff % 4;
+
+        const isDayShift = diffRemainder === 0;
+        const nightStart = diffRemainder === 0 + 1 || diffRemainder === -3;
+        const nightEnd = diffRemainder === 0 + 2 || diffRemainder === -2;
+      
+        return (
+          <div className="row col cell weekend"  key={`prev_${day}`}>
+            <span>{day}</span>
+            {isDayShift && 'Дневная'}
+            {nightStart && 'Ночь начало'}
+            {nightEnd && 'Ночная конец'}
+          </div>
+          )
+        })}
 
       {thisMonthDays.map(({ day, diff }) => {
         const diffRemainder = diff % 4;
@@ -46,28 +81,38 @@ export function Cells({ count, onAdd, setSelectedDay, startDate }) {
 
         return (
              (day === currDay) ?
-              <div className="row col cell select isDay"  onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
+              <div className="row col cell select"  onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
                 <span>{day}</span>
-                {isDayShift && 'Д'}
-                {nightStart && 'Нн'}
-                {nightEnd && 'Нк'}
+                {isDayShift && 'Дневная'}
+                {nightStart && 'Ночь начало'}
+                {nightEnd && 'Ночная конец'}
               </div>
                :
-              <div className="row col cell isDay"  onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
+              <div className="row col cell"  onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
                 <span>{day}</span>
-                {isDayShift && 'Д'}
-                {nightStart && 'Нн'}
-                {nightEnd && 'Нк'}
+                {isDayShift && 'Дневная'}
+                {nightStart && 'Ночь начало'}
+                {nightEnd && 'Ночная конец'}
               </div>
-              
            )
         })}
 
-      {nextMonthDays.map(day => (
-        <div className="row col cell weekend" key={`next${day}`}>
-          <span>{day}</span>
-        </div>
-      ))}
+      {nextMonthDays.map(({ day, diff }) => {
+        const diffRemainder = diff % 4;
+
+        const isDayShift = diffRemainder === 0;
+        const nightStart = diffRemainder === 0 + 1 || diffRemainder === -3;
+        const nightEnd = diffRemainder === 0 + 2 || diffRemainder === -2;
+      
+        return (
+          <div className="row col cell weekend"  key={`prev_${day}`}>
+            <span>{day}</span>
+            {isDayShift && 'Дневная'}
+            {nightStart && 'Ночь начало'}
+            {nightEnd && 'Ночная конец'}
+          </div>
+          )
+        })}
 
     </div>
   );

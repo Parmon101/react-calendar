@@ -208,7 +208,14 @@ header {
   cursor: pointer;
 }
 
- /* краска ячейки 2х2> */
-/* .asd:nth-child(4n+3), .asd:nth-child(4n) {
-  background: rgba(0, 204, 255, 0.199) !important
-} */
+.isDay {
+  background: rgba(255, 196, 0, 0.199) !important
+}
+
+.isNightStart {
+  background: rgba(0, 33, 41, 0.199) !important
+}
+
+.isNightEnd {
+  background: rgba(5, 205, 255, 0.288) !important
+}
