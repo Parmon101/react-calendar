@@ -68,14 +68,7 @@ function App () {
         active={showModal}
         setActive={setShowModal}
         />
-      {/* <Schedule
-        count={count}
 
-        // setCurrDay={setCurrDay}
-        // setCurrMonth={setCurrMonth}
-        // setCurrYear={setCurrYear}
-
-      /> */}
       <p> Выбрать день начала дневной смены</p>
       <DatePicker
         selected={startDate}

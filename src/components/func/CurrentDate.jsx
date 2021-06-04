@@ -5,5 +5,3 @@ export function CurrentDate({count}) {
       </div>
   )
 }
-
-// export default CurrentDate

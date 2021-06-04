@@ -1,5 +1,3 @@
-// import { default as dayjs } from 'dayjs';
-
 export function Cells({ count, onAdd, setSelectedDay, startDate }) {
   // остатки дней предыдущего месяца
   const leftDaysWeek = count.startOf('month').day() -1;
@@ -16,10 +14,6 @@ export function Cells({ count, onAdd, setSelectedDay, startDate }) {
     }
   }).reverse();
 
-  console.log(leftDaysWeek);
-  console.log(allDaysInCurrentMonth);
-  
-
   const endOfMonth = count.endOf('month').date();
   const thisMonthDays = Array.from({ length: endOfMonth }, (_, index) => {
     const day = count.startOf('month').add(index, 'days');
@@ -32,8 +26,7 @@ export function Cells({ count, onAdd, setSelectedDay, startDate }) {
     }
   });
 
-
-  const currDay = count.format("DD");
+  const currDay = count.format("D");
 
   // осталось дней до конца недели
   const daysLeftInWeek = 7- count.endOf('month').day();
@@ -56,10 +49,10 @@ export function Cells({ count, onAdd, setSelectedDay, startDate }) {
       {prevMonthDays2.map(({ day, diff }) => {
         const diffRemainder = diff % 4;
 
-        const isDayShift = diffRemainder === 0 + 3 || diffRemainder === -3;
-        const nightStart = diffRemainder === 0;
-        const nightEnd = diffRemainder === 0 + 1 || diffRemainder === -1;
-        const week = diffRemainder === 0 + 2 || diffRemainder === -2;
+        const isDayShift = diffRemainder === 0 + 3|| diffRemainder === -3;
+        const nightStart = diffRemainder === 0 + 2 || diffRemainder === -2;
+        const nightEnd = diffRemainder === 0 +1 || diffRemainder === -1;
+        const week = diffRemainder === 0 ;
       
         return (
           <div className="row col cell weekend"  key={`prev_${day}`}>
@@ -76,14 +69,13 @@ export function Cells({ count, onAdd, setSelectedDay, startDate }) {
         const diffRemainder = diff % 4;
 
         const isDayShift = diffRemainder === 0;
-        const nightStart = diffRemainder === 0 + 1 || diffRemainder === -1;
+        const nightStart = diffRemainder === 0 + 1 || diffRemainder === -3;
         const nightEnd = diffRemainder === 0 + 2 || diffRemainder === -2;
-        const week = diffRemainder === 0 + 3 || diffRemainder === -3;
-
+        const week = diffRemainder === 0 + 3 || diffRemainder === -1;
 
         return (
              (day === currDay) ?
-              <div className="row col cell select"  onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
+              <div className="row col cell select " id={diffRemainder} onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
                 <span>{day}</span>
                 {isDayShift && 'Дневная'}
                 {nightStart && 'Ночь начало'}
@@ -91,6 +83,33 @@ export function Cells({ count, onAdd, setSelectedDay, startDate }) {
                 {week && 'Вых'}
               </div>
                :
+               (day === currDay || isDayShift) ?
+              <div className="row col cell cell_isDay  " id={diffRemainder} onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
+                <span>{day}</span>
+                {isDayShift && 'Дневная'}
+                {nightStart && 'Ночь начало'}
+                {nightEnd && 'Ночная конец'}
+                {week && 'Вых'}
+              </div>
+               :
+               (day === currDay || nightStart) ?
+              <div className="row col cell cell_isNightStart  " id={diffRemainder} onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
+                <span>{day}</span>
+                {isDayShift && 'Дневная'}
+                {nightStart && 'Ночь начало'}
+                {nightEnd && 'Ночная конец'}
+                {week && 'Вых'}
+              </div>
+              :
+              (day === currDay || nightEnd) ?
+              <div className="row col cell cell_isNightEnd  " id={diffRemainder} onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
+                <span>{day}</span>
+                {isDayShift && 'Дневная'}
+                {nightStart && 'Ночь начало'}
+                {nightEnd && 'Ночная конец'}
+                {week && 'Вых'}
+              </div>
+              :
               <div className="row col cell"  onClick={()=> {onAdd(); setSelectedDay(day)}} key={`this_${day}`}>
                 <span>{day}</span>
                 {isDayShift && 'Дневная'}
@@ -105,9 +124,9 @@ export function Cells({ count, onAdd, setSelectedDay, startDate }) {
         const diffRemainder = diff % 4;
 
         const isDayShift = diffRemainder === 0;
-        const nightStart = diffRemainder === 0 + 3 || diffRemainder === -3;
+        const nightStart = diffRemainder === 0 + 1 || diffRemainder === -3;
         const nightEnd = diffRemainder === 0 + 2 || diffRemainder === -2;
-        const week = diffRemainder === 0 + 1 || diffRemainder === -1;
+        const week = diffRemainder === 0 + 3 || diffRemainder === -1;
       
         return (
           <div className="row col cell weekend"  key={`prev_${day}`}>

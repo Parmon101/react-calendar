@@ -28,7 +28,6 @@
   --text-color-light: #ccc;
   --border-color: #eee;
   --bg-color: #f9f9f9;
-  --neutral-color: #fff;
 }
 
 
@@ -143,17 +142,13 @@ header {
   border-right: 1px solid var(--border-color);
   overflow: hidden;
   cursor: pointer;
-  background: var(--neutral-color);
+  /* background: var(--neutral-color); */
   transition: 0.25s ease-out;
   display: inline-flex;
 }
 
 .select {
   border: 2px solid blue !important
-}
-
-.weekend {
-  background: rgba(0, 0, 0, 0.136) !important
 }
 
 .calendar .body .cell:hover {
@@ -208,14 +203,18 @@ header {
   cursor: pointer;
 }
 
-.isDay {
-  background: rgba(255, 196, 0, 0.199) !important
+.cell_isDay {
+  background: rgb(255, 196, 0)
 }
 
-.isNightStart {
-  background: rgba(0, 33, 41, 0.199) !important
+.cell_isNightStart {
+  background: rgb(10, 230, 3)
 }
 
-.isNightEnd {
-  background: rgba(5, 205, 255, 0.288) !important
+.cell_isNightEnd {
+  background: rgb(0, 204, 255)
+}
+
+.weekend {
+  background: rgba(0, 0, 0, 0.136)
 }
